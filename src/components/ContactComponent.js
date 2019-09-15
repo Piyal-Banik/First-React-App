@@ -75,16 +75,16 @@ class Contact extends Component {
                                         validators={{
                                             required, minLength: minLength(3), maxLength: maxLength(15)
                                         }}/>
-                                <Errors 
-                                    className="text-danger"
-                                    model=".firstName"
-                                    show="touched"
-                                    messages={{
-                                        required: "Required",
-                                        minLength: "Must be greater than 2 characters",
-                                        maxLength: "Must be 15 characters and les"
-                                    }}
-                                />
+                                    <Errors 
+                                        className="text-danger"
+                                        model=".firstName"
+                                        show="touched"
+                                        messages={{
+                                            required: "Required",
+                                            minLength: "Must be greater than 2 characters",
+                                            maxLength: "Must be 15 characters and les"
+                                        }}
+                                    />
                                 </Col>
                             </Row>
                             <Row className="form-group">
