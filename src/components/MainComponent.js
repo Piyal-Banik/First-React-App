@@ -9,19 +9,23 @@ import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addComment, fetchDishes } from '../redux/ActionCreators';
+import { actions } from 'react-redux-form';
 
-const mapStateToProps = state => {
-      return {
-        dishes: state.dishes,
-        comments: state.comments,
-        promotions: state.promotions,
-        leaders: state.leaders
-      };
+
+const mapStateToProps = (state) => {
+
+  return {
+    dishes: state.dishes,
+    comments: state.comments,
+    promotions: state.promotions,
+    leaders: state.leaders
+  };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
-  fetchDishes: () => {dispatch(fetchDishes())}
+  addComment: (dishId, rating, author, comment) => {dispatch(addComment(dishId, rating, author, comment))},
+  fetchDishes: () => {dispatch(fetchDishes())},
+  resetFeedbackForm: () => {dispatch(actions.reset('feedback'))}
 });
 
 class Main extends Component {
@@ -34,6 +38,7 @@ class Main extends Component {
 
     const HomePage = () => {
       return (
+
         <Home 
           dish={this.props.dishes.dishes.filter((dish) => dish.featured)[0]}
           dishesLoading={this.props.dishes.isLoading}
@@ -63,7 +68,7 @@ class Main extends Component {
           <Route path="/aboutus" component={() => <About leaders={this.props.leaders} />} />
           <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes} />} />
           <Route path='/menu/:dishId' component={DishWithId} />
-          <Route exact path="/contactus" component= {Contact} />
+          <Route exact path="/contactus" component= {() => <Contact resetFeedbackForm={this.props.resetFeedbackForm}/>} />
           <Redirect to="/home" />
         </Switch>
         <Footer/>
