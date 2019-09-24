@@ -1,3 +1,4 @@
+ 
 import React, {Component} from 'react';
 import { Card, CardImg, CardText, CardBody,
     CardTitle, Breadcrumb, BreadcrumbItem, Button,
@@ -118,6 +119,7 @@ class CommentForm extends Component {
     function RenderComments({comments, postComment, dishId}) {
 
         if(comments != null) {
+            console.log("aaa " + comments);
             const Comments = comments.map((comment) => {
                 return(
                     <div>
